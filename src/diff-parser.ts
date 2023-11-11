@@ -1,12 +1,12 @@
 import type { Commander } from './commander';
-import type { DiffFile, DiffHunk } from './types/diff.type';
+import type { DiffEachFile, DiffHunk } from './types/diff.type';
 
 const HUNK_HEADER_PATTERN = /@@\s.*\+(\d+)(,(\d+))?\s@@/;
 
 export class DiffParser {
   constructor(private readonly commander: Commander) {}
 
-  getAddedDiffFiles(): DiffFile[] {
+  getAddedDiffFiles(): DiffEachFile[] {
     const filepaths = this.commander.gitDiffNameonly().split('\n');
     const diffFileStrs = this.commander.gitDiff().split(/\ndiff --git .+?\n/);
 

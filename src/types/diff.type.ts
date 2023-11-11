@@ -1,4 +1,4 @@
-export type DiffFile = {
+export type DiffEachFile = {
   hunks: DiffHunk[];
   filepath: string;
 };
