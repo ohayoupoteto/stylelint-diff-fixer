@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "child_process": "^1.0.2",
+    "fs": "^0.0.1-security",
     "postcss": "^8.4.31",
     "postcss-scss": "^4.0.9",
     "stylelint": "^15.11.0"

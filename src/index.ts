@@ -1,5 +1,9 @@
 import { DiffParser } from './diff-parser';
 import { Commander } from './commander';
+import { DummyFileHandler } from './dummy-file-handler';
 
 const diffParser = new DiffParser(new Commander());
-console.log(diffParser.getAddedDiffFiles());
+const diffsEachFile = diffParser.getDiffsEachFile();
+
+const dummyFileHandler = new DummyFileHandler();
+dummyFileHandler.write(diffsEachFile);
