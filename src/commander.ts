@@ -10,6 +10,6 @@ export class Commander {
   }
 
   gitDiffNameonly(): string {
-    return execSync('git diff --name-only').toString();
+    return execSync('git diff --name-only "*.css" "*.scss"').toString();
   }
 }

@@ -5,16 +5,7 @@ import type { StyleFormatter } from './style-formatter';
 export class StyleLinter {
   constructor(private readonly styleFormatter: StyleFormatter) {}
 
-  async lintWithFix(): Promise<string> {
-    const code = `
-      .a {
-        color: 0px;
-        margin-bottom: 10px;
-      }
-        color: 0px;
-        margin-bottom: 10px;
-      `;
-
+  async lintWithFix(code: string): Promise<string> {
     const fixedStyle = await lint({
       code: this.styleFormatter.formatForFix(code),
       configBasedir: join(__dirname, '..'),
