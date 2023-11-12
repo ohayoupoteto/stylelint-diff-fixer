@@ -2,10 +2,12 @@
   "name": "diff-lint",
   "version": "1.0.0",
   "description": "",
-  "main": "./dist/index.js",
   "files": [
     "./dist/"
   ],
+  "bin": {
+    "diff-lint": "./dist/index.js"
+  },
   "scripts": {
     "dev": "nodemon --watch src/**/*.ts --exec ts-node src/index.ts",
     "build": "tsc",
