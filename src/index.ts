@@ -4,8 +4,12 @@ import { Commander } from './commander';
 import { DiffParser } from './diff-parser';
 import { CssFileHandler } from './css-file-handler';
 
-const diffParser = new DiffParser(new Commander());
-const diffsEachFile = diffParser.getDiffsEachFile();
+export async function run(): Promise<void> {
+  const diffParser = new DiffParser(new Commander());
+  const diffsEachFile = diffParser.getDiffsEachFile();
+  if (diffsEachFile.length === 0) return;
 
-const styleLinter = new StyleLinter(new StyleFormatter());
-new CssFileHandler(styleLinter).update(diffsEachFile);
+  const styleLinter = new StyleLinter(new StyleFormatter());
+  const cssFileHandler = new CssFileHandler(styleLinter);
+  await cssFileHandler.update(diffsEachFile);
+}

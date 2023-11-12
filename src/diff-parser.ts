@@ -9,7 +9,10 @@ export class DiffParser {
   getDiffsEachFile(): DiffEachFile[] {
     this.commander.gitAddUncommittedFile();
 
+    const filepathsStr = this.commander.gitDiffNameonly();
+    if (filepathsStr === '') return [];
     const filepaths = this.commander.gitDiffNameonly().split('\n');
+
     const diffFileStrs = this.commander.gitDiff().split(/\ndiff --git .+?\n/);
 
     return diffFileStrs.map((diff, i) => {
@@ -27,7 +30,7 @@ export class DiffParser {
     return diffHunkStrs.map((diffHunkStr) => {
       const matches = diffHunkStr.match(HUNK_HEADER_PATTERN);
       if (!matches) throw new Error();
-      const [, startLineNumber, , endLineNumber] = matches;
+      const [, startLineNumber, , count] = matches;
 
       const addedRows = diffHunkStr
         .split('\n')
@@ -38,7 +41,7 @@ export class DiffParser {
         rows: addedRows,
         lineNumber: {
           start: parseInt(startLineNumber),
-          end: parseInt(endLineNumber),
+          count: parseInt(count),
         },
       };
     });

@@ -11,14 +11,13 @@ export class CssFileHandler {
 
       for (const {
         rows,
-        lineNumber: { start, end },
+        lineNumber: { start },
       } of hunks) {
         const fixedCode = await this.styleLinter.lintWithFix(rows.join('\n'));
         const fixedCodeRows = fixedCode.split('\n');
-
-        for (let j = start - 1; j < end; j++) {
-          newFileRows[j] = fixedCodeRows[j];
-        }
+        fixedCodeRows.forEach((fixedCodeRow, i) => {
+          newFileRows[start + i - 1] = fixedCodeRow;
+        });
       }
       writeFileSync(filepath, newFileRows.join('\n'));
     }

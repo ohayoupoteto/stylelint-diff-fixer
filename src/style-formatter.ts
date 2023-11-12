@@ -10,16 +10,16 @@ const WRAPPER_RULE_SELECTOR = '.stylelint-diff-fixer';
 
 export class StyleFormatter {
   formatForFix(code: string): string {
-    const root = this.parse(code);
+    const { nodes } = this.parse(code);
 
     // 親にRuleを持たないDeclがある場合でもソートされるように、仮のRuleでラップする
-    root.nodes = [
-      new Rule({
-        selector: WRAPPER_RULE_SELECTOR,
-        nodes: root.nodes,
-      }),
-    ];
-    return root.toString();
+    const wrappedRule = new Rule({
+      selector: WRAPPER_RULE_SELECTOR,
+      raws: { semicolon: true },
+      nodes,
+    });
+
+    return wrappedRule.toString();
   }
 
   unformatForFix(code: string): string {
@@ -31,7 +31,8 @@ export class StyleFormatter {
     });
 
     root.nodes = fixedNodes;
-    return root.toString();
+    root.raws.semicolon = true;
+    return root.toString().replace(/^\n/, '');
   }
 
   private parse(code: string): Root {

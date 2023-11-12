@@ -10,5 +10,5 @@ export type DiffHunk = {
 
 type LineNumber = {
   start: number;
-  end: number;
+  count: number;
 };
