@@ -6,7 +6,7 @@ export class Commander {
   }
 
   gitDiff(): string {
-    return execSync('git --no-pager diff HEAD -U0').toString();
+    return execSync('git --no-pager diff HEAD -U0 "*.css" "*.scss"').toString();
   }
 
   gitDiffNameonly(): string {

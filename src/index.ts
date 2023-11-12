@@ -1,9 +1,10 @@
-import { DiffParser } from './diff-parser';
+import { StyleLinter } from './style-linter';
+import { StyleFormatter } from './style-formatter';
 import { Commander } from './commander';
-import { DummyFileHandler } from './dummy-file-handler';
+import { DiffParser } from './diff-parser';
 
 const diffParser = new DiffParser(new Commander());
 const diffsEachFile = diffParser.getDiffsEachFile();
 
-const dummyFileHandler = new DummyFileHandler();
-dummyFileHandler.write(diffsEachFile);
+const styleLinter = new StyleLinter(new StyleFormatter());
+diffsEachFile.forEach((diffEachFile) => {});
