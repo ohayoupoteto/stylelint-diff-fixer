@@ -7,18 +7,38 @@ export class CssFileHandler {
 
   async update(diffsEachFile: DiffEachFile[]): Promise<void> {
     for (const { filepath, hunks } of diffsEachFile) {
-      const newFileRows = [...readFileSync(filepath).toString().split('\n')];
-
-      for (const {
-        rows,
-        lineNumber: { start },
-      } of hunks) {
+      // そのファイルにおけるfix済の全Hunk
+      const fixedHunks: string[] = [];
+      for (const { rows } of hunks) {
         const fixedCode = await this.styleLinter.lintWithFix(rows.join('\n'));
         const fixedCodeRows = fixedCode.split('\n');
-        fixedCodeRows.forEach((fixedCodeRow, i) => {
-          newFileRows[start + i - 1] = fixedCodeRow;
-        });
+        fixedHunks.push(fixedCodeRows.join('\n'));
       }
+
+      // 差分開始行の番号
+      const startLines = hunks.map(({ lineNumber: { start } }) => start);
+      // 差分行の先頭以外の番号
+      const toEndLines: number[] = [];
+      hunks.forEach(({ lineNumber: { start, count } }) => {
+        for (let i = 1; i < count; i++) {
+          toEndLines.push(start + i);
+        }
+      });
+
+      const baseFileRows = readFileSync(filepath).toString().split('\n');
+      const newFileRows: (string | null)[] = [];
+      let pushedHunkCount = 0;
+      baseFileRows.forEach((baseFileRow, i) => {
+        if (toEndLines.includes(i + 1)) return;
+
+        if (startLines.includes(i + 1)) {
+          newFileRows.push(fixedHunks[pushedHunkCount]);
+          pushedHunkCount++;
+        } else {
+          newFileRows.push(baseFileRow);
+        }
+      });
+
       writeFileSync(filepath, newFileRows.join('\n'));
     }
   }
