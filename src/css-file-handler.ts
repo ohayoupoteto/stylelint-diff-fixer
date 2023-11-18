@@ -14,8 +14,7 @@ export class CssFileHandler {
       const fixedHunks: string[] = [];
       for (const { rows } of hunks) {
         const fixedCode = await this.styleFixer.lintWithFix(rows.join('\n'));
-        const fixedCodeRows = fixedCode.split('\n');
-        fixedHunks.push(fixedCodeRows.join('\n'));
+        fixedHunks.push(fixedCode);
       }
 
       // 差分開始行の番号

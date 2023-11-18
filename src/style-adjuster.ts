@@ -22,10 +22,9 @@ export class StyleAdjuster {
       fixedNodes = nodes;
     });
 
-    // ラッパークラス削除の際に生まれる不要な前の改行を削除
-    fixedNodes[0].raws.before = fixedNodes[0].raws.before?.replace(/^\n/, '');
-    const newRoot = new Root({ nodes: fixedNodes, raws: { semicolon: true } });
-
-    return newRoot.toString();
+    return new Root({
+      nodes: fixedNodes,
+      raws: { semicolon: true },
+    }).toString();
   }
 }
