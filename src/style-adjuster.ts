@@ -1,16 +1,10 @@
-import {
-  type ChildNode,
-  CssSyntaxError,
-  parse,
-  type Root,
-  Rule,
-} from 'postcss';
+import { type ChildNode, parse, Rule } from 'postcss';
 
 const WRAPPER_RULE_SELECTOR = '.stylelint-diff-fixer';
 
 export class StyleAdjuster {
-  formatForFix(code: string): string {
-    const { raws, nodes } = this.parse(code);
+  adjust(code: string): string {
+    const { raws, nodes } = parse(code);
 
     // 親にRuleを持たないDeclがある場合でもソートされるように、仮のRuleでラップする
     const wrappedRule = new Rule({
@@ -22,8 +16,8 @@ export class StyleAdjuster {
     return wrappedRule.toString();
   }
 
-  unformatForFix(code: string): string {
-    const root = this.parse(code);
+  unAdjust(code: string): string {
+    const root = parse(code);
 
     let fixedNodes: ChildNode[] = [];
     root.walkRules(WRAPPER_RULE_SELECTOR, ({ nodes }) => {
@@ -33,16 +27,5 @@ export class StyleAdjuster {
     root.nodes = fixedNodes;
     root.raws = { semicolon: true };
     return root.toString();
-  }
-
-  private parse(code: string): Root {
-    try {
-      return parse(code);
-    } catch (e: unknown) {
-      if (e instanceof CssSyntaxError) {
-        throw new Error(`CSSの構文エラーがあります：${e.message}`);
-      }
-      throw e;
-    }
   }
 }

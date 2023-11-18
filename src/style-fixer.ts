@@ -6,14 +6,16 @@ export class StyleFixer {
   constructor(private readonly styleAdjuster: StyleAdjuster) {}
 
   async lintWithFix(code: string): Promise<string> {
-    const fixedStyle = await lint({
-      code: this.styleAdjuster.formatForFix(code),
-      fix: true,
-    });
-    const formattedStyle = await format(fixedStyle.output, {
-      parser: 'scss',
-    });
+    let adjustedStyle: string;
+    try {
+      adjustedStyle = this.styleAdjuster.adjust(code);
+    } catch (e) {
+      return code;
+    }
 
-    return this.styleAdjuster.unformatForFix(formattedStyle);
+    const fixedStyle = await lint({ code: adjustedStyle, fix: true });
+    const formattedStyle = await format(fixedStyle.output, { parser: 'scss' });
+
+    return this.styleAdjuster.unAdjust(formattedStyle);
   }
 }
