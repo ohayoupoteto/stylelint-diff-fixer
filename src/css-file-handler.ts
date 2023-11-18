@@ -1,16 +1,16 @@
 import type { DiffEachFile } from './types/diff.type';
-import type { StyleLinter } from './style-linter';
+import type { StyleFixer } from './style-fixer';
 import { readFileSync, writeFileSync } from 'fs';
 
 export class CssFileHandler {
-  constructor(private readonly styleLinter: StyleLinter) {}
+  constructor(private readonly styleFixer: StyleFixer) {}
 
   async update(diffsEachFile: DiffEachFile[]): Promise<void> {
     for (const { filepath, hunks } of diffsEachFile) {
       // そのファイルにおけるfix済の全Hunk
       const fixedHunks: string[] = [];
       for (const { rows } of hunks) {
-        const fixedCode = await this.styleLinter.lintWithFix(rows.join('\n'));
+        const fixedCode = await this.styleFixer.lintWithFix(rows.join('\n'));
         const fixedCodeRows = fixedCode.split('\n');
         fixedHunks.push(fixedCodeRows.join('\n'));
       }

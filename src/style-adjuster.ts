@@ -8,7 +8,7 @@ import {
 
 const WRAPPER_RULE_SELECTOR = '.stylelint-diff-fixer';
 
-export class StyleFormatter {
+export class StyleAdjuster {
   formatForFix(code: string): string {
     const { nodes } = this.parse(code);
 
