@@ -2,6 +2,9 @@ import type { DiffEachFile } from './types/diff.type';
 import type { StyleFixer } from './style-fixer';
 import { readFileSync, writeFileSync } from 'fs';
 
+/**
+ * CSSファイルに読み書きするクラス
+ */
 export class CssFileHandler {
   constructor(private readonly styleFixer: StyleFixer) {}
 
