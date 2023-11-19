@@ -1,6 +1,9 @@
 import { lint } from 'stylelint';
 import type { StyleAdjuster } from './style-adjuster';
 
+/**
+ * Stylelint-fixを実行するクラス
+ */
 export class StyleFixer {
   constructor(private readonly styleAdjuster: StyleAdjuster) {}
 

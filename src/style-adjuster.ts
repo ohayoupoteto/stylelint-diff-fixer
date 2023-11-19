@@ -2,6 +2,9 @@ import { parse, Rule } from 'postcss';
 
 const WRAPPER_RULE_SELECTOR = '.@style-diff-fixer';
 
+/**
+ * Stylelint-fixのためにstyleを整形するクラス
+ */
 export class StyleAdjuster {
   wrapInDummyRule(code: string): string {
     const { raws, nodes } = parse('\n' + code + '\n');
