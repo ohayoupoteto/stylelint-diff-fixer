@@ -52,18 +52,24 @@ describe('StyleAdjuster', () => {
   });
 
   describe('wrapInDummyRule', () => {
-    it.each(TEST_STYLES)('', ({ unwrapped, wrapped }) => {
-      expect(styleAdjuster.wrapInDummyRule(dedent(unwrapped))).toBe(
-        dedent(wrapped),
-      );
-    });
+    it.each(TEST_STYLES)(
+      '正常系_ダミーのRuleでラップされる',
+      ({ unwrapped, wrapped }) => {
+        expect(styleAdjuster.wrapInDummyRule(dedent(unwrapped))).toBe(
+          dedent(wrapped),
+        );
+      },
+    );
   });
 
   describe('unwrapInDummyRule', () => {
-    it.each(TEST_STYLES)('', ({ unwrapped, wrapped }) => {
-      expect(styleAdjuster.unwrapInDummyRule(dedent(wrapped))).toBe(
-        dedent(unwrapped),
-      );
-    });
+    it.each(TEST_STYLES)(
+      '正常系_ラップされたダミーのRuleが削除される',
+      ({ unwrapped, wrapped }) => {
+        expect(styleAdjuster.unwrapInDummyRule(dedent(wrapped))).toBe(
+          dedent(unwrapped),
+        );
+      },
+    );
   });
 });
