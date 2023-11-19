@@ -1,8 +1,8 @@
 import type { DiffEachFile } from './diff/diff.type';
 import type { StyleFixer } from './style/style-fixer';
-import { readFileSync, writeFileSync } from 'fs';
 import type { Logger } from './logger';
 import type { StyleFixedHunk } from './style/style.type';
+import type { CssFileSystem } from './css-file-system';
 
 /**
  * CSSファイルに読み書きするクラス
@@ -10,6 +10,7 @@ import type { StyleFixedHunk } from './style/style.type';
 export class CssFileHandler {
   constructor(
     private readonly styleFixer: StyleFixer,
+    private readonly cssFileSystem: CssFileSystem,
     private readonly logger: Logger,
   ) {}
 
@@ -36,7 +37,10 @@ export class CssFileHandler {
         }
       });
 
-      const baseFileRows = readFileSync(filepath).toString().split('\n');
+      const baseFileRows = this.cssFileSystem
+        .read(filepath)
+        .toString()
+        .split('\n');
       const newFileRows: (string | null)[] = [];
       let pushedHunkCount = 0;
       baseFileRows.forEach((baseFileRow, i) => {
@@ -50,7 +54,7 @@ export class CssFileHandler {
         }
       });
 
-      writeFileSync(filepath, newFileRows.join('\n'));
+      this.cssFileSystem.write(filepath, newFileRows.join('\n'));
       this.logger.logFixResult({ filepath, fixedHunkCount: fixedHunks.length });
     }
   }
