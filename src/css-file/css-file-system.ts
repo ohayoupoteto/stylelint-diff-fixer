@@ -24,6 +24,6 @@ export class CssFileSystem {
     data: string | NodeJS.ArrayBufferView,
     options?: WriteFileOptions,
   ): ReturnType<typeof writeFileSync> {
-    return writeFileSync(file, data, options);
+    writeFileSync(file, data, options);
   }
 }
