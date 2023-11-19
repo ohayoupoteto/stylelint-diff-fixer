@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 import { StyleFixer } from './style/style-fixer';
 import { StyleAdjuster } from './style/style-adjuster';
-import { Commander } from './commander';
+import { CommandExecutor } from './command-executor';
 import { DiffParser } from './diff/diff-parser';
 import { CssFileHandler } from './css-file-handler';
 import { Logger } from './logger';
 import { LogStyle } from './log-style';
 
-const diffParser = new DiffParser(new Commander());
+const diffParser = new DiffParser(new CommandExecutor());
 const diffsEachFile = diffParser.getDiffsEachFile();
 if (diffsEachFile.length !== 0) {
   const styleFixer = new StyleFixer(new StyleAdjuster());

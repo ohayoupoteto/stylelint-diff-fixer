@@ -1,6 +1,6 @@
 import { execSync } from 'child_process';
 
-export class Commander {
+export class CommandExecutor {
   gitAddUncommittedFile(): void {
     execSync('git add --intent-to-add .');
   }

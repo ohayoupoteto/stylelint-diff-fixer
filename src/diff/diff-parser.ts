@@ -1,19 +1,21 @@
-import type { Commander } from '../commander';
+import type { CommandExecutor } from '../command-executor';
 import type { DiffEachFile, DiffHunk } from './diff.type';
 
 const HUNK_HEADER_PATTERN = /@@\s.*\+(\d+)(,(\d+))?\s@@/;
 
 export class DiffParser {
-  constructor(private readonly commander: Commander) {}
+  constructor(private readonly commandExecutor: CommandExecutor) {}
 
   getDiffsEachFile(): DiffEachFile[] {
-    this.commander.gitAddUncommittedFile();
+    this.commandExecutor.gitAddUncommittedFile();
 
-    const filepathsStr = this.commander.gitDiffNameonly();
+    const filepathsStr = this.commandExecutor.gitDiffNameonly();
     if (filepathsStr === '') return [];
-    const filepaths = this.commander.gitDiffNameonly().split('\n');
+    const filepaths = this.commandExecutor.gitDiffNameonly().split('\n');
 
-    const diffFileStrs = this.commander.gitDiff().split(/\ndiff --git .+?\n/);
+    const diffFileStrs = this.commandExecutor
+      .gitDiff()
+      .split(/\ndiff --git .+?\n/);
 
     return diffFileStrs.map((diff, i) => {
       const diffHunkStrs = diff.split(/\n(?=@@\s.*\s@@.*?\n)/);
