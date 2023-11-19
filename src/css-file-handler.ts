@@ -1,27 +1,36 @@
-import type { DiffEachFile } from './types/diff.type';
-import type { StyleFixer } from './style-fixer';
+import type { DiffEachFile } from './diff/diff.type';
+import type { StyleFixer } from './style/style-fixer';
 import { readFileSync, writeFileSync } from 'fs';
+import type { Logger } from './logger';
+import type { StyleFixedHunk } from './style/style.type';
 
 /**
  * CSSファイルに読み書きするクラス
  */
 export class CssFileHandler {
-  constructor(private readonly styleFixer: StyleFixer) {}
+  constructor(
+    private readonly styleFixer: StyleFixer,
+    private readonly logger: Logger,
+  ) {}
 
   async update(diffsEachFile: DiffEachFile[]): Promise<void> {
     for (const { filepath, hunks } of diffsEachFile) {
       // そのファイルにおけるfix済の全Hunk
-      const fixedHunks: string[] = [];
-      for (const { rows } of hunks) {
-        const fixedCode = await this.styleFixer.lintWithFix(rows.join('\n'));
-        fixedHunks.push(fixedCode);
+      const fixedHunks: StyleFixedHunk[] = [];
+      for (const { rows, lineNumber } of hunks) {
+        const code = rows.join('\n');
+        const fixedCode = await this.styleFixer.lintWithFix(code);
+        if (code !== fixedCode) {
+          fixedHunks.push({ code: fixedCode, lineNumber });
+        }
       }
+      if (fixedHunks.length === 0) continue;
 
       // 差分開始行の番号
-      const startLines = hunks.map(({ lineNumber: { start } }) => start);
+      const startLines = fixedHunks.map(({ lineNumber: { start } }) => start);
       // 差分行の先頭以外の番号
       const toEndLines: number[] = [];
-      hunks.forEach(({ lineNumber: { start, count } }) => {
+      fixedHunks.forEach(({ lineNumber: { start, count } }) => {
         for (let i = 1; i < count; i++) {
           toEndLines.push(start + i);
         }
@@ -34,7 +43,7 @@ export class CssFileHandler {
         if (toEndLines.includes(i + 1)) return;
 
         if (startLines.includes(i + 1)) {
-          newFileRows.push(fixedHunks[pushedHunkCount]);
+          newFileRows.push(fixedHunks[pushedHunkCount].code);
           pushedHunkCount++;
         } else {
           newFileRows.push(baseFileRow);
@@ -42,6 +51,7 @@ export class CssFileHandler {
       });
 
       writeFileSync(filepath, newFileRows.join('\n'));
+      this.logger.logFixResult({ filepath, fixedHunkCount: fixedHunks.length });
     }
   }
 }

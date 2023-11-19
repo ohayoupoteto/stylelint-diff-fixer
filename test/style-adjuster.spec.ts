@@ -1,4 +1,4 @@
-import { StyleAdjuster } from '../src/style-adjuster';
+import { StyleAdjuster } from '../src/style/style-adjuster';
 import dedent from 'ts-dedent';
 
 type TestStyle = { unwrapped: string; wrapped: string };

@@ -1,5 +1,5 @@
-import type { Commander } from './commander';
-import type { DiffEachFile, DiffHunk } from './types/diff.type';
+import type { Commander } from '../commander';
+import type { DiffEachFile, DiffHunk } from './diff.type';
 
 const HUNK_HEADER_PATTERN = /@@\s.*\+(\d+)(,(\d+))?\s@@/;
 
