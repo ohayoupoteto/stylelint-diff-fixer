@@ -1,30 +1,22 @@
-import { type ChildNode, parse, Root, Rule } from 'postcss';
+import { parse, Rule } from 'postcss';
 
-const WRAPPER_RULE_SELECTOR = '.stylelint-diff-fixer';
+const WRAPPER_RULE_SELECTOR = '.@style-diff-fixer';
 
 export class StyleAdjuster {
-  adjust(code: string): string {
-    const { raws, nodes } = parse(code);
+  wrapInDummyRule(code: string): string {
+    const { raws, nodes } = parse('\n' + code + '\n');
 
     // 親にRuleを持たないDeclがある場合でもソートされるように、仮のRuleでラップする
     const wrappedRule = new Rule({
       selector: WRAPPER_RULE_SELECTOR,
       raws: { ...raws, semicolon: true },
-      nodes,
     });
+    wrappedRule.append(nodes);
 
     return wrappedRule.toString();
   }
 
-  unAdjust(code: string): string {
-    let fixedNodes: ChildNode[] = [];
-    parse(code).walkRules(WRAPPER_RULE_SELECTOR, ({ nodes }) => {
-      fixedNodes = nodes;
-    });
-
-    return new Root({
-      nodes: fixedNodes,
-      raws: { semicolon: true },
-    }).toString();
+  unwrapInDummyRule(code: string): string {
+    return code.replace(`${WRAPPER_RULE_SELECTOR} {\n`, '').replace(/\n}$/, '');
   }
 }
