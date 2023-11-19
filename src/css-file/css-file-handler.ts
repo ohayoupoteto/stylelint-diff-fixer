@@ -12,6 +12,7 @@ export class CssFileHandler {
     private readonly styleFixer: StyleFixer,
     private readonly cssFileSystem: CssFileSystem,
     private readonly logger: Logger,
+    private readonly rootFullPath: string,
   ) {}
 
   async update(diffsEachFile: DiffEachFile[]): Promise<void> {
@@ -37,8 +38,10 @@ export class CssFileHandler {
         }
       });
 
+      const fullFilepath = `${this.rootFullPath}/${filepath}`;
+
       const baseFileRows = this.cssFileSystem
-        .read(filepath)
+        .read(fullFilepath)
         .toString()
         .split('\n');
       const newFileRows: (string | null)[] = [];
@@ -54,7 +57,7 @@ export class CssFileHandler {
         }
       });
 
-      this.cssFileSystem.write(filepath, newFileRows.join('\n'));
+      this.cssFileSystem.write(fullFilepath, newFileRows.join('\n'));
       this.logger.logFixResult({ filepath, fixedHunkCount: fixedHunks.length });
     }
   }

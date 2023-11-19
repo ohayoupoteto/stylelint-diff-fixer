@@ -10,8 +10,13 @@ export class CommandExecutor {
   }
 
   gitDiffNameonly(): string {
-    return execSync(
-      'git --no-pager diff --name-only --line-prefix=$(git rev-parse --show-toplevel)/ "*.css" "*.scss"',
-    ).toString();
+    return execSync('git diff --name-only "*.css" "*.scss"').toString();
+  }
+
+  /**
+   * Gitのルートへのフルパスを取得
+   */
+  gitRootPath(): string {
+    return execSync('git rev-parse --show-toplevel').toString().trimEnd();
   }
 }
