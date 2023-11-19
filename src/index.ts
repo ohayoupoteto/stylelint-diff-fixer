@@ -5,13 +5,13 @@ import { Commander } from './commander';
 import { DiffParser } from './diff/diff-parser';
 import { CssFileHandler } from './css-file-handler';
 import { Logger } from './logger';
-import { LogColor } from './log-color';
+import { LogStyle } from './log-style';
 
 const diffParser = new DiffParser(new Commander());
 const diffsEachFile = diffParser.getDiffsEachFile();
 if (diffsEachFile.length !== 0) {
   const styleFixer = new StyleFixer(new StyleAdjuster());
-  const logger = new Logger(new LogColor());
+  const logger = new Logger(new LogStyle());
 
   const cssFileHandler = new CssFileHandler(styleFixer, logger);
   cssFileHandler.update(diffsEachFile);

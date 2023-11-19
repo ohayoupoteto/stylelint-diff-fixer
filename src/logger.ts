@@ -1,8 +1,8 @@
 import type { StyleFixResult } from './style/style.type';
-import type { LogColor } from './log-color';
+import type { LogStyle } from './log-style';
 
 export class Logger {
-  constructor(private readonly logColor: LogColor) {}
+  constructor(private readonly logStyle: LogStyle) {}
 
   logFixResult({ filepath, fixedHunkCount }: StyleFixResult): void {
     const msgHunkCount = `(${fixedHunkCount} hunk${
@@ -10,12 +10,15 @@ export class Logger {
     })`;
 
     console.info(
-      this.logColor.addBgColor(
-        this.logColor.addFgColor(' FIX ', 'BLACK_BOLD'),
-        'GREEN',
+      this.logStyle.setColor(
+        this.logStyle.setWeight(
+          this.logStyle.setColor(' FIX ', 'FG_BLACK'),
+          'BOLD',
+        ),
+        'BG_GREEN',
       ),
       filepath,
-      this.logColor.addFgColor(msgHunkCount, 'GRAY'),
+      this.logStyle.setWeight(msgHunkCount, 'THIN'),
     );
   }
 }
