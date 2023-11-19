@@ -1,7 +1,7 @@
-import type { DiffEachFile } from './diff/diff.type';
-import type { StyleFixer } from './style/style-fixer';
-import type { Logger } from './logger';
-import type { StyleFixedHunk } from './style/style.type';
+import type { DiffEachFile } from '../diff/diff.type';
+import type { StyleFixer } from '../style/style-fixer';
+import type { Logger } from '../log/logger';
+import type { StyleFixedHunk } from '../style/style.type';
 import type { CssFileSystem } from './css-file-system';
 
 /**

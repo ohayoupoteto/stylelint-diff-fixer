@@ -3,10 +3,10 @@ import { StyleFixer } from './style/style-fixer';
 import { StyleAdjuster } from './style/style-adjuster';
 import { CommandExecutor } from './command-executor';
 import { DiffParser } from './diff/diff-parser';
-import { CssFileHandler } from './css-file-handler';
-import { Logger } from './logger';
-import { LogStyle } from './log-style';
-import { CssFileSystem } from './css-file-system';
+import { CssFileHandler } from './css-file/css-file-handler';
+import { Logger } from './log/logger';
+import { LogStyle } from './log/log-style';
+import { CssFileSystem } from './css-file/css-file-system';
 
 const diffParser = new DiffParser(new CommandExecutor());
 const diffsEachFile = diffParser.getDiffsEachFile();

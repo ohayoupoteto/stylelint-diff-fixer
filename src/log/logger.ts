@@ -1,4 +1,4 @@
-import type { StyleFixResult } from './style/style.type';
+import type { StyleFixResult } from '../style/style.type';
 import type { LogStyle } from './log-style';
 
 export class Logger {
