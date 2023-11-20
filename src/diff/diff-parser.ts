@@ -6,15 +6,15 @@ const HUNK_HEADER_PATTERN = /@@\s.*\+(\d+)(,(\d+))?\s@@/;
 export class DiffParser {
   constructor(private readonly commandExecutor: CommandExecutor) {}
 
-  getDiffsEachFile(): DiffEachFile[] {
+  getDiffsEachFile(filepath: string): DiffEachFile[] {
     this.commandExecutor.gitAddUncommittedFile();
 
-    const filepathsStr = this.commandExecutor.gitDiffNameonly();
+    const filepathsStr = this.commandExecutor.gitDiffNameonly(filepath);
     if (filepathsStr === '') return [];
-    const filepaths = this.commandExecutor.gitDiffNameonly().split('\n');
+    const filepaths = filepathsStr.split('\n');
 
     const diffFileStrs = this.commandExecutor
-      .gitDiff()
+      .gitDiff(filepath)
       .split(/\ndiff --git .+?\n/);
 
     return diffFileStrs.map((diff, i) => {

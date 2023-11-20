@@ -7,10 +7,17 @@ import { CssFileHandler } from './css-file/css-file-handler';
 import { Logger } from './log/logger';
 import { LogStyle } from './log/log-style';
 import { CssFileSystem } from './css-file/css-file-system';
+import { Cli } from './cli';
+import { Command } from 'commander';
+
+const cli = new Cli(new Command());
+cli.init();
+const { filepath } = cli.getOptions();
 
 const commandExecutor = new CommandExecutor();
 const diffParser = new DiffParser(commandExecutor);
-const diffsEachFile = diffParser.getDiffsEachFile();
+
+const diffsEachFile = diffParser.getDiffsEachFile(filepath);
 if (diffsEachFile.length !== 0) {
   const styleFixer = new StyleFixer(new StyleAdjuster());
   const cssFileSystem = new CssFileSystem();

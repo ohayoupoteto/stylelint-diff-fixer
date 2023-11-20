@@ -5,12 +5,16 @@ export class CommandExecutor {
     execSync('git add --intent-to-add .');
   }
 
-  gitDiff(): string {
-    return execSync('git --no-pager diff HEAD -U0 "*.css" "*.scss"').toString();
+  gitDiff(filepath: string): string {
+    return execSync(
+      `git --no-pager diff HEAD -U0 "*.css" "*.scss" ${filepath}`,
+    ).toString();
   }
 
-  gitDiffNameonly(): string {
-    return execSync('git diff --name-only "*.css" "*.scss"').toString();
+  gitDiffNameonly(filepath: string): string {
+    return execSync(
+      `git diff --name-only "*.css" "*.scss" ${filepath}`,
+    ).toString();
   }
 
   /**
