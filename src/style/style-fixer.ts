@@ -7,7 +7,7 @@ import type { StyleAdjuster } from './style-adjuster';
 export class StyleFixer {
   constructor(private readonly styleAdjuster: StyleAdjuster) {}
 
-  async lintWithFix(code: string): Promise<string> {
+  async fix(code: string): Promise<string> {
     let adjustedStyle: string;
     try {
       adjustedStyle = this.styleAdjuster.wrapInDummyRule(code);

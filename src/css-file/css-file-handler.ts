@@ -21,7 +21,7 @@ export class CssFileHandler {
       const fixedHunks: StyleFixedHunk[] = [];
       for (const { rows, lineNumber } of hunks) {
         const code = rows.join('\n');
-        const fixedCode = await this.styleFixer.lintWithFix(code);
+        const fixedCode = await this.styleFixer.fix(code);
         if (code !== fixedCode) {
           fixedHunks.push({ code: fixedCode, lineNumber });
         }
