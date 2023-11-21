@@ -1,14 +1,19 @@
 {
-  "name": "diff-lint",
-  "version": "1.0.0",
+  "name": "stylelint-diff-fixer",
+  "version": "0.1.0",
   "description": "",
   "keywords": [
+    "stylelint",
+    "git",
+    "diff",
     "css",
-    "lint",
-    "linter",
     "scss",
-    "stylelint"
+    "fix"
   ],
+  "author": {
+    "name": "Oteto",
+    "url": "https://pote-chil.com/profile"
+  },
   "license": "MIT",
   "files": [
     "./dist/"
