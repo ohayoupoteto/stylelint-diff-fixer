@@ -12,7 +12,9 @@ export class CommandExecutor {
   }
 
   gitDiffNameonly(filepath: string): string {
-    return this.exec(`git diff --name-only "*.css" "*.scss" ${filepath}`);
+    return this.exec(
+      `git --no-pager diff HEAD --name-only "*.css" "*.scss" ${filepath}`,
+    );
   }
 
   /**
