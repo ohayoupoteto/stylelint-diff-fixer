@@ -4,7 +4,7 @@ export type DiffEachFile = {
 };
 
 export type DiffHunk = {
-  rows: string[];
+  lines: string[];
   lineNumber: LineNumber;
 };
 

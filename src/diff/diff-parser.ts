@@ -36,11 +36,11 @@ export class DiffParser {
 
       const addedRows = diffHunkStr
         .split('\n')
-        .filter((row) => row.startsWith('+'))
-        .map((row) => row.slice(1));
+        .filter((line) => line.startsWith('+'))
+        .map((line) => line.slice(1));
 
       return {
-        rows: addedRows,
+        lines: addedRows,
         lineNumber: {
           start: parseInt(startLineNumber),
           count: parseInt(count),

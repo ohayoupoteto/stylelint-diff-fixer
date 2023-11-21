@@ -19,8 +19,8 @@ export class CssFileHandler {
     for (const { filepath, hunks } of diffsEachFile) {
       // そのファイルにおけるfix済の全Hunk
       const fixedHunks: StyleFixedHunk[] = [];
-      for (const { rows, lineNumber } of hunks) {
-        const code = rows.join('\n');
+      for (const { lines, lineNumber } of hunks) {
+        const code = lines.join('\n');
         const fixedCode = await this.styleFixer.fix(code);
         if (code !== fixedCode) {
           fixedHunks.push({ code: fixedCode, lineNumber });
