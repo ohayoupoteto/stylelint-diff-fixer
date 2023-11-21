@@ -46,6 +46,7 @@ export class CssFileHandler {
         .split('\n');
       const newFileRows: (string | null)[] = [];
       let pushedHunkCount = 0;
+
       baseFileRows.forEach((baseFileRow, i) => {
         if (toEndLines.includes(i + 1)) return;
 
