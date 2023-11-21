@@ -15,7 +15,7 @@ export class CssFileHandler {
     private readonly rootFullPath: string,
   ) {}
 
-  async update(diffsEachFile: DiffEachFile[]): Promise<void> {
+  async writeToDiffLines(diffsEachFile: DiffEachFile[]): Promise<void> {
     for (const { filepath, hunks } of diffsEachFile) {
       // そのファイルにおけるfix済の全Hunk
       const fixedHunks: StyleFixedHunk[] = [];

@@ -24,5 +24,5 @@ export async function main(filepath: string): Promise<void> {
     logger,
     commandExecutor.gitRootPath(),
   );
-  await cssFileHandler.update(diffsEachFile);
+  await cssFileHandler.writeToDiffLines(diffsEachFile);
 }
