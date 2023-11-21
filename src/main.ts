@@ -12,17 +12,17 @@ export async function main(filepath: string): Promise<void> {
   const diffParser = new DiffParser(commandExecutor);
 
   const diffsEachFile = diffParser.getDiffsEachFile(filepath);
-  if (diffsEachFile.length !== 0) {
-    const styleFixer = new StyleFixer(new StyleAdjuster());
-    const cssFileSystem = new CssFileSystem();
-    const logger = new Logger(new LogStyle());
+  if (diffsEachFile.length === 0) return;
 
-    const cssFileHandler = new CssFileHandler(
-      styleFixer,
-      cssFileSystem,
-      logger,
-      commandExecutor.gitRootPath(),
-    );
-    await cssFileHandler.update(diffsEachFile);
-  }
+  const styleFixer = new StyleFixer(new StyleAdjuster());
+  const cssFileSystem = new CssFileSystem();
+  const logger = new Logger(new LogStyle());
+
+  const cssFileHandler = new CssFileHandler(
+    styleFixer,
+    cssFileSystem,
+    logger,
+    commandExecutor.gitRootPath(),
+  );
+  await cssFileHandler.update(diffsEachFile);
 }
