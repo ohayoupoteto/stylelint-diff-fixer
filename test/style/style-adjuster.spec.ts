@@ -45,11 +45,7 @@ const TEST_STYLES: TestStyle[] = [
 ];
 
 describe('StyleAdjuster', () => {
-  let styleAdjuster: StyleAdjuster;
-
-  beforeAll(() => {
-    styleAdjuster = new StyleAdjuster();
-  });
+  const styleAdjuster = new StyleAdjuster();
 
   describe('wrapInDummyRule', () => {
     it.each(TEST_STYLES)(
