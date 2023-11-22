@@ -9,3 +9,5 @@ export type StyleFixedHunk = {
   code: string;
   lineNumber: DiffHunk['lineNumber'];
 };
+
+export type BaseCodeRow = { before: string; after: string };
