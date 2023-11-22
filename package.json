@@ -32,9 +32,7 @@
     "lint": "npm run prettier && npm run eslint"
   },
   "dependencies": {
-    "child_process": "^1.0.2",
     "commander": "^11.1.0",
-    "fs": "^0.0.1-security",
     "postcss": "^8.4.31",
     "postcss-scss": "^4.0.9",
     "stylelint": "^15.11.0"
