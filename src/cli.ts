@@ -8,7 +8,7 @@ export class Cli {
   constructor(private readonly command: Command) {}
 
   init(): void {
-    this.command.option('-f, --filepath <filepath>', 'File path to fix', '');
+    this.command.option('-f, --filepath <filepath>', 'file path to fix', '');
     this.command.parse();
   }
 
