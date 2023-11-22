@@ -10,7 +10,7 @@ const TEST_STYLES: TestStyle[] = [
       color: red;
     }`,
     wrapped: `
-    .@style-diff-fixer {
+    .@sdf {
     .a {
       color: red;
     }
@@ -21,7 +21,7 @@ const TEST_STYLES: TestStyle[] = [
     color: red;
     background-color: red;`,
     wrapped: `
-    .@style-diff-fixer {
+    .@sdf {
     color: red;
     background-color: red;
     }`,
@@ -34,7 +34,7 @@ const TEST_STYLES: TestStyle[] = [
     color: red;
     background-color: red;`,
     wrapped: `
-    .@style-diff-fixer {
+    .@sdf {
     .a {
       color: red;
     }

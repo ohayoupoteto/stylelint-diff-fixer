@@ -1,6 +1,6 @@
 import { parse, Rule } from 'postcss';
 
-const WRAPPER_RULE_SELECTOR = '.@style-diff-fixer';
+const WRAPPER_RULE_SELECTOR = '.@sdf';
 
 /**
  * Stylelint-fixのためにstyleを整形するクラス
