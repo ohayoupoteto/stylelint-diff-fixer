@@ -38,8 +38,6 @@
   },
   "dependencies": {
     "commander": "^11.1.0",
-    "postcss": "^8.4.31",
-    "postcss-scss": "^4.0.9",
     "stylelint": "^15.11.0"
   },
   "devDependencies": {
