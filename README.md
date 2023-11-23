@@ -52,12 +52,12 @@ FIX  style/001.css (2 hunks)
 # glob pattern
 stylelint-diff-fixer style/*.css
 FIX  style/001.css (2 hunks)
-FIX  style/002.scss (1 hunk)
+FIX  style/002.css (1 hunk)
 
 # all
 stylelint-diff-fixer
 FIX  style/001.css (2 hunks)
-FIX  style/002.scss (1 hunk)
+FIX  style/002.css (1 hunk)
 FIX  style/sub/001.scss (1 hunk)
 ```
 
