@@ -1,7 +1,7 @@
 {
   "name": "stylelint-diff-fixer",
   "version": "0.1.0",
-  "description": "",
+  "description": "CLI tool that applies Stylelint's autofix only to the diff lines in Git",
   "keywords": [
     "stylelint",
     "git",
@@ -28,8 +28,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "build:reset": "rm -rf ./dist && tsc",
-    "prepare": "npm i typescript --save-dev && npm run build:reset",
+    "prepare": "npm run build",
     "test": "jest",
     "test:watch": "jest --watchAll",
     "prettier": "prettier --write \"{src,test}/**/*.ts\"",
