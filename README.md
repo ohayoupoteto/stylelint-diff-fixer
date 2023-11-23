@@ -73,4 +73,4 @@ Options:
 
 ## License
 
-[MIT](https://raw.githubusercontent.com/stylelint/stylelint/main/LICENSE)
+[MIT](https://github.com/ohayoupoteto/stylelint-diff-fixer/blob/main/LICENSE)
