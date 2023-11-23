@@ -6,17 +6,11 @@ export class CommandExecutor {
   }
 
   gitDiff(filepath: string): string {
-    return this.exec(
-      `git --no-pager diff HEAD -U0 ${this.getFilepathPattern(filepath)}`,
-    );
+    return this.exec(`git --no-pager diff HEAD -U0 ${filepath}`);
   }
 
   gitDiffNameonly(filepath: string): string {
-    return this.exec(
-      `git --no-pager diff HEAD --name-only ${this.getFilepathPattern(
-        filepath,
-      )}`,
-    );
+    return this.exec(`git --no-pager diff HEAD --name-only ${filepath}`);
   }
 
   /**
@@ -37,9 +31,5 @@ export class CommandExecutor {
 
   private hasStderr(err: any): err is { stderr: Buffer } {
     return !!err.stderr;
-  }
-
-  private getFilepathPattern(filepath: string): string {
-    return filepath || '"*.css" "*.scss"';
   }
 }

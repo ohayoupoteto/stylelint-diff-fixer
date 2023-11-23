@@ -1,18 +1,20 @@
 import type { Command } from 'commander';
 
-type Options = {
-  filepath: string;
-};
+type Args = string[];
 
 export class Cli {
   constructor(private readonly command: Command) {}
 
-  init(): void {
-    this.command.option('-f, --filepath <filepath>', 'file path to fix', '');
-    this.command.parse();
-  }
+  getArgs(): Args {
+    const args: string[] = [];
 
-  getOptions(): Options {
-    return this.command.opts<Options>();
+    this.command
+      .argument('[filepath]', 'file path to fix', '"*.css" "*.scss"')
+      .action((filepath) => {
+        args.push(filepath);
+      })
+      .parse();
+
+    return args;
   }
 }

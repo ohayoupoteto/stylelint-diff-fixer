@@ -4,7 +4,6 @@ import { Command } from 'commander';
 import { main } from './main';
 
 const cli = new Cli(new Command());
-cli.init();
-const { filepath } = cli.getOptions();
+const [filepath] = cli.getArgs();
 
 main(filepath);
