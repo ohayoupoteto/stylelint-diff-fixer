@@ -19,7 +19,7 @@
     "./dist/"
   ],
   "bin": {
-    "diff-lint": "./dist/index.js"
+    "stylelint-diff-fixer": "./dist/index.js"
   },
   "scripts": {
     "build": "tsc",
