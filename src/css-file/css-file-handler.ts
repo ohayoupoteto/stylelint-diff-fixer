@@ -3,6 +3,7 @@ import type { StyleFixer } from '../style/style-fixer';
 import type { Logger } from '../log/logger';
 import type { StyleFixedHunk } from '../style/style.type';
 import type { CssFileSystem } from './css-file-system';
+import { isEmptyArray } from '../utils/array';
 
 /**
  * CSSファイルに読み書きするクラス
@@ -26,7 +27,7 @@ export class CssFileHandler {
           fixedHunks.push({ code: fixedCode, lineNumber });
         }
       }
-      if (fixedHunks.length === 0) continue;
+      if (isEmptyArray(fixedHunks)) continue;
 
       // 差分開始行の番号
       const startLines = fixedHunks.map(({ lineNumber: { start } }) => start);
