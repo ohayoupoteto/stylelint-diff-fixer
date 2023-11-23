@@ -45,7 +45,7 @@ export class CssFileHandler {
         .read(fullFilepath)
         .toString()
         .split('\n');
-      const newFileRows: (string | null)[] = [];
+      const newFileRows: string[] = [];
       let pushedHunkCount = 0;
 
       baseFileRows.forEach((baseFileRow, i) => {
