@@ -50,7 +50,7 @@ stylelint-diff-fixer style/001.css
 FIX  style/001.css (2 hunks)
 
 # glob pattern
-stylelint-diff-fixer style/*.css
+stylelint-diff-fixer "style/*.css"
 FIX  style/001.css (2 hunks)
 FIX  style/002.css (1 hunk)
 
