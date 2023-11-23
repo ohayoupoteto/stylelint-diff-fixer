@@ -8,7 +8,7 @@ CLI tool that applies [Stylelint](https://github.com/stylelint/stylelint)'s auto
 
 ### Before
 
-```css
+```diff
 .a {
     display: block;
 +    color: red;
@@ -20,7 +20,7 @@ CLI tool that applies [Stylelint](https://github.com/stylelint/stylelint)'s auto
 
 ### After
 
-```css
+```diff
 .a {
     display: block;
 +    padding: 0;
