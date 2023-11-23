@@ -43,7 +43,7 @@ export class StyleAdjuster {
       wrappedNodes = nodes;
     });
 
-    const newRoot = new Root({
+    const newRoot = root.clone({
       nodes: wrappedNodes.map((node) => node.clone()),
       raws: { semicolon: true, after: this.baseCodeRows.after },
     });
