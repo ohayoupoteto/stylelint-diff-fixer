@@ -10,16 +10,21 @@
     "scss",
     "fix"
   ],
+  "homepage": "https://github.com/ohayoupoteto/stylelint-diff-fixer#readme",
+  "license": "MIT",
   "author": {
     "name": "Oteto",
     "url": "https://pote-chil.com/profile"
   },
-  "license": "MIT",
   "files": [
     "./dist/"
   ],
   "bin": {
     "stylelint-diff-fixer": "./dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ohayoupoteto/stylelint-diff-fixer"
   },
   "scripts": {
     "build": "tsc",
