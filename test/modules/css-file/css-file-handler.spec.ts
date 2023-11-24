@@ -1,13 +1,13 @@
-import { DiffEachFile } from '../../src/diff/diff.type';
-import { StyleFixer } from '../../src/style/style-fixer';
-import { Logger } from '../../src/log/logger';
-import { CssFileSystem } from '../../src/css-file/css-file-system';
-import { CssFileHandler } from '../../src/css-file/css-file-handler';
+import { DiffEachFile } from '../../../src/modules/diff/diff.type';
+import { StyleFixer } from '../../../src/modules/style/style-fixer';
+import { Logger } from '../../../src/modules/log/logger';
+import { CssFileSystem } from '../../../src/modules/css-file/css-file-system';
+import { CssFileHandler } from '../../../src/modules/css-file/css-file-handler';
 import dedent from 'ts-dedent';
 
-jest.mock('../../src/style/style-fixer');
-jest.mock('../../src/css-file/css-file-system');
-jest.mock('../../src/log/logger');
+jest.mock('../../../src/modules/style/style-fixer');
+jest.mock('../../../src/modules/css-file/css-file-system');
+jest.mock('../../../src/modules/log/logger');
 
 type TestCase = {
   diffsEachFile: DiffEachFile[];

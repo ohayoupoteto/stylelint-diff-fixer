@@ -1,4 +1,4 @@
-import { type ChildNode, parse, Root, Rule } from 'postcss';
+import { type ChildNode, parse, Rule } from 'postcss';
 import type { BaseCodeRow } from './style.type';
 
 const WRAPPER_RULE_SELECTOR = '.@sdf';

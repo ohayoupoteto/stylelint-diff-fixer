@@ -3,7 +3,7 @@ import type { StyleFixer } from '../style/style-fixer';
 import type { Logger } from '../log/logger';
 import type { StyleFixedHunk } from '../style/style.type';
 import type { CssFileSystem } from './css-file-system';
-import { isEmptyArray } from '../utils/array';
+import { isEmptyArray } from '../../utils/array';
 
 /**
  * CSSファイルに読み書きするクラス

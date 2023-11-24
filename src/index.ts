@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { Cli } from './cli';
+import { Cli } from './modules/cli';
 import { Command } from 'commander';
 import { main } from './main';
 

@@ -1,11 +1,11 @@
-import { CommandExecutor } from './command-executor';
-import { DiffParser } from './diff/diff-parser';
-import { StyleFixer } from './style/style-fixer';
-import { StyleAdjuster } from './style/style-adjuster';
-import { CssFileSystem } from './css-file/css-file-system';
-import { Logger } from './log/logger';
-import { LogStyle } from './log/log-style';
-import { CssFileHandler } from './css-file/css-file-handler';
+import { CommandExecutor } from './modules/command-executor';
+import { DiffParser } from './modules/diff/diff-parser';
+import { StyleFixer } from './modules/style/style-fixer';
+import { StyleAdjuster } from './modules/style/style-adjuster';
+import { CssFileSystem } from './modules/css-file/css-file-system';
+import { Logger } from './modules/log/logger';
+import { LogStyle } from './modules/log/log-style';
+import { CssFileHandler } from './modules/css-file/css-file-handler';
 import { isEmptyArray } from './utils/array';
 
 export async function main(filepath: string): Promise<void> {

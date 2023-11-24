@@ -1,6 +1,6 @@
 import type { CommandExecutor } from '../command-executor';
 import type { DiffEachFile, DiffHunk } from './diff.type';
-import { isEmptyArray } from '../utils/array';
+import { isEmptyArray } from '../../utils/array';
 
 const HUNK_HEADER_PATTERN = /@@\s.*\+(\d+)(,(\d+))?\s@@/;
 

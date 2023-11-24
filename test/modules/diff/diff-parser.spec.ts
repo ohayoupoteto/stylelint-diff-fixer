@@ -1,7 +1,7 @@
-import { CommandExecutor } from '../../src/command-executor';
+import { CommandExecutor } from '../../../src/modules/command-executor';
 import dedent from 'ts-dedent';
-import { DiffParser } from '../../src/diff/diff-parser';
-import { DiffEachFile } from '../../src/diff/diff.type';
+import { DiffParser } from '../../../src/modules/diff/diff-parser';
+import { DiffEachFile } from '../../../src/modules/diff/diff.type';
 
 type TestCase = {
   filepaths: string[];
