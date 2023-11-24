@@ -10,11 +10,11 @@ CLI tool that applies [Stylelint](https://github.com/stylelint/stylelint)'s auto
 
 ```diff
 .a {
-    display: block;
-+    color: red;
-+    margin: 0px;
-+    padding: 0em;
-    line-height: 1.2;
+    margin: 0px;
++    color: #000000;
++    border: 0px;
++    display: block;
+    padding: 0px;
 }
 ```
 
@@ -22,13 +22,15 @@ CLI tool that applies [Stylelint](https://github.com/stylelint/stylelint)'s auto
 
 ```diff
 .a {
-    display: block;
-+    padding: 0;
-+    margin: 0;
-+    color: red;
-    line-height: 1.2;
+    margin: 0px;
++    display: block;
++    color: #000;
++    border: 0;
+    padding: 0px;
 }
 ```
+
+The behavior of the fix depends on the project's Stylelint settings.
 
 ## Usage
 
@@ -45,20 +47,18 @@ stylelint-diff-fixer <FILE_PATH>
 ```
 
 ```shell
-# specific file
 stylelint-diff-fixer style/001.css
-FIX  style/001.css (2 hunks)
+# FIX  style/001.css (2 hunks)
 
 # glob pattern
 stylelint-diff-fixer "style/*.css"
-FIX  style/001.css (2 hunks)
-FIX  style/002.css (1 hunk)
+# FIX  style/001.css (2 hunks)
+# FIX  style/002.css (1 hunk)
 
-# all
 stylelint-diff-fixer
-FIX  style/001.css (2 hunks)
-FIX  style/002.css (1 hunk)
-FIX  style/sub/001.scss (1 hunk)
+# FIX  style/001.css (2 hunks)
+# FIX  style/002.css (1 hunk)
+# FIX  style/sub/001.scss (1 hunk)
 ```
 
 ## Option
