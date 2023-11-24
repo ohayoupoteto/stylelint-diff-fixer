@@ -61,7 +61,7 @@ FIX  style/002.css (1 hunk)
 FIX  style/sub/001.scss (1 hunk)
 ```
 
-## OPTION
+## Option
 
 ```
 Arguments:
