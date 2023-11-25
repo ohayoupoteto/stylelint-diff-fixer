@@ -73,3 +73,7 @@ Options:
 ## License
 
 [MIT](https://github.com/ohayoupoteto/stylelint-diff-fixer/blob/main/LICENSE)
+
+## Author
+
+[Oteto](https://pote-chil.com/profile)
